@@ -19,5 +19,10 @@
  */
 call_user_func(function() {
     $classLoader = require __DIR__ . '/../../autoload.php';
-    (new \TYPO3\CMS\Cli\CommandApplication($classLoader))->run();
+
+    \Bartacus\Bundle\BartacusBundle\Bootstrap\SymfonyBootstrap::initKernel();
+    $application = new \TYPO3\CMS\Cli\CommandApplication($classLoader);
+
+    \Bartacus\Bundle\BartacusBundle\Bootstrap\SymfonyBootstrap::initAppPackage();
+    $application->run();
 });
